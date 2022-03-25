@@ -11,9 +11,24 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
+import csv
+datos=open('data.csv')
+csvreader=csv.reader(datos)
+
 
 
 def pregunta_01():
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2 = []  # se almacenan los números que necesitamos
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0])  # ingrese los datos de la columna 1 a lista_1
+
+    for values in lista_1:  # por cada dato en la lista 1
+        sub_lista = values.split()[1]  # esta variable almacena el entero que necesitamos
+        lista_2.append(int(sub_lista))  # transforma los valores en enteros y los ingresa a la lista
+
+    respuesta = sum(lista_2)
+
     """
     Retorne la suma de la segunda columna.
 
@@ -21,7 +36,9 @@ def pregunta_01():
     214
 
     """
-    return
+    return respuesta
+
+print(pregunta_01())
 
 
 def pregunta_02():
