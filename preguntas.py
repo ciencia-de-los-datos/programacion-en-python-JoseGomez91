@@ -53,7 +53,7 @@ def pregunta_02():
         lista_1.append(row[0])  # ingrese los datos de la columna 1 a lista_1
     for values in lista_1:  # por cada dato en la lista 1
         sub_lista = values.split()[0]  # esta variable almacena la letra que necesitamos
-        lista_2.append(sub_lista)  # transforma los valores en enteros y los ingresa a la lista
+        lista_2.append(sub_lista)  #  los ingresa a la lista
     for letras in lista_2:
         diccionario_1.setdefault(letras, 0)
         diccionario_1[letras] = diccionario_1[letras]+1
@@ -77,6 +77,25 @@ def pregunta_02():
 print(pregunta_02())
 
 def pregunta_03():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2 = []  # se almacenan los datos 0 y 1
+    diccionario_1 = {}  # aquí almacenamos las claves y las cantidades
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0])  # ingrese los datos de la columna 1 a lista_1
+    for values in lista_1:  # por cada dato en la lista 1
+        sub_lista = values.split()[0:2]  # esta variable almacena los datos que necesitamos
+        lista_2.append(sub_lista)  #los ingresa a la lista
+    for listas in lista_2: #dentro de la lista 2 hay muchas listas
+        if listas[0] not in diccionario_1:
+            diccionario_1.setdefault(listas[0],int(listas[1]))
+            print(listas)
+        else:
+            diccionario_1[listas[0]]=diccionario_1[listas[0]]+int(listas[1])
+    print(lista_2)
+    print(diccionario_1)
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
     de tuplas (letra, suma) ordendas alfabeticamente.
@@ -91,9 +110,9 @@ def pregunta_03():
     ]
 
     """
-    return
+    return sorted(diccionario_1.items())
 
-
+print(pregunta_03())
 def pregunta_04():
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
