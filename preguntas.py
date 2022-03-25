@@ -114,6 +114,25 @@ def pregunta_03():
 
 print(pregunta_03())
 def pregunta_04():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2 = []  # se almacenan las fechas que necesitamos
+    lista_3= [] #meses
+    diccionario_1 = {}  # aquí almacenamos las claves y las cantidades
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0])  # ingrese los datos de la columna 1 a lista_1
+    for values in lista_1:  # por cada dato en la lista 1
+        sub_lista = values.split()[2]  # esta variable almacena la fecha que necesitamos
+        lista_2.append(sub_lista)  # los ingresa a la lista
+    for fechas in lista_2:
+        sub_lista = fechas.split("-")  #dividimos las fechas con el guion
+        lista_3.append(sub_lista) #metemos estas listas en la lista 3
+    for listas in lista_3:
+        diccionario_1.setdefault(listas[1], 0)
+        diccionario_1[listas[1]] = diccionario_1[listas[1]] + 1
+    print(lista_1)
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
@@ -135,8 +154,8 @@ def pregunta_04():
     ]
 
     """
-    return
-
+    return sorted(diccionario_1.items())
+print(pregunta_04())
 
 def pregunta_05():
     """
