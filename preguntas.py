@@ -11,13 +11,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-import csv
-datos=open('data.csv')
-csvreader=csv.reader(datos)
+
 
 
 
 def pregunta_01():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
     lista_1 = []  # se almacenan los datos de la columna #1 del csv
     lista_2 = []  # se almacenan los números que necesitamos
     for row in csvreader:  # por cada columna en el documento
@@ -42,6 +43,22 @@ print(pregunta_01())
 
 
 def pregunta_02():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2 = []  # se almacenan las letras que necesitamos
+    diccionario_1={}  #aquí almacenamos las claves y las cantidades
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0])  # ingrese los datos de la columna 1 a lista_1
+    for values in lista_1:  # por cada dato en la lista 1
+        sub_lista = values.split()[0]  # esta variable almacena la letra que necesitamos
+        lista_2.append(sub_lista)  # transforma los valores en enteros y los ingresa a la lista
+    for letras in lista_2:
+        diccionario_1.setdefault(letras, 0)
+        diccionario_1[letras] = diccionario_1[letras]+1
+
+
     """
     Retorne la cantidad de registros por cada letra de la primera columna como la lista
     de tuplas (letra, cantidad), ordendas alfabéticamente.
@@ -56,8 +73,8 @@ def pregunta_02():
     ]
 
     """
-    return
-
+    return sorted(diccionario_1.items())
+print(pregunta_02())
 
 def pregunta_03():
     """
