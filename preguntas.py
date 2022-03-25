@@ -11,13 +11,14 @@ Utilice el archivo `data.csv` para resolver las preguntas.
 
 
 """
-import csv
-datos=open('data.csv')
-csvreader=csv.reader(datos)
+
 
 
 
 def pregunta_01():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
     lista_1 = []  # se almacenan los datos de la columna #1 del csv
     lista_2 = []  # se almacenan los números que necesitamos
     for row in csvreader:  # por cada columna en el documento
