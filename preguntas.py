@@ -39,7 +39,7 @@ def pregunta_01():
     """
     return respuesta
 
-print(pregunta_01())
+#print(pregunta_01())
 
 
 def pregunta_02():
@@ -74,7 +74,7 @@ def pregunta_02():
 
     """
     return sorted(diccionario_1.items())
-print(pregunta_02())
+#print(pregunta_02())
 
 def pregunta_03():
     import csv
@@ -94,8 +94,8 @@ def pregunta_03():
             print(listas)
         else:
             diccionario_1[listas[0]]=diccionario_1[listas[0]]+int(listas[1])
-    print(lista_2)
-    print(diccionario_1)
+    #print(lista_2)
+    #print(diccionario_1)
     """
     Retorne la suma de la columna 2 por cada letra de la primera columna como una lista
     de tuplas (letra, suma) ordendas alfabeticamente.
@@ -112,7 +112,7 @@ def pregunta_03():
     """
     return sorted(diccionario_1.items())
 
-print(pregunta_03())
+#print(pregunta_03())
 def pregunta_04():
     import csv
     datos = open('data.csv')
@@ -132,7 +132,7 @@ def pregunta_04():
     for listas in lista_3:
         diccionario_1.setdefault(listas[1], 0)
         diccionario_1[listas[1]] = diccionario_1[listas[1]] + 1
-    print(lista_1)
+    #print(lista_1)
     """
     La columna 3 contiene una fecha en formato `YYYY-MM-DD`. Retorne la cantidad de
     registros por cada mes, tal como se muestra a continuación.
@@ -155,9 +155,35 @@ def pregunta_04():
 
     """
     return sorted(diccionario_1.items())
-print(pregunta_04())
+#print(pregunta_04())
 
 def pregunta_05():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2=[] #letras
+    lista_3=[] #máximo
+    lista_4= [] #mínimos
+    diccionario_1 = {}  # aquí almacenamos las claves y las cantidades
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0])
+    for values in lista_1:  # por cada dato en la lista 1
+        if values.split()[0] not in lista_2:
+            lista_2.append(values.split()[0])
+    for letra in lista_2:
+        numeros=[]
+        for values in lista_1:
+            if letra == values.split()[0]: #si las letras coinciden meter los números en la lista
+                numeros.append(int(values.split()[1]))
+        lista_3.append(max(numeros))
+        lista_4.append(min(numeros))
+
+
+
+
+
+        
     """
     Retorne una lista de tuplas con el valor maximo y minimo de la columna 2 por cada
     letra de la columa 1.
@@ -172,9 +198,13 @@ def pregunta_05():
     ]
 
     """
-    return
+    print(lista_1)
+    print(lista_2)
+    print(lista_3)
+    print(lista_4)
+    return sorted(zip(lista_2, lista_3, lista_4))
 
-
+print(pregunta_05())
 def pregunta_06():
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
