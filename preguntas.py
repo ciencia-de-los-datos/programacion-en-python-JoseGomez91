@@ -198,14 +198,42 @@ def pregunta_05():
     ]
 
     """
-    print(lista_1)
-    print(lista_2)
-    print(lista_3)
-    print(lista_4)
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
+    # print(lista_4)
     return sorted(zip(lista_2, lista_3, lista_4))
 
-print(pregunta_05())
+#print(pregunta_05())
 def pregunta_06():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2 = []  # elementos con split
+    lista_3 = []  # claves letras
+    lista_4 = []  # maximos
+    lista_5=[] #minimos
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[2:])
+    for values in lista_1:  # por cada dato en la lista 1
+        for data in values:
+                lista_2.append(data.split("\t"))
+    for values in lista_2:
+        for data in values:
+            if len(data)>1:
+                if data[:3] not in lista_3:
+                    lista_3.append(data[:3])
+    for data in lista_3:
+        numeros=[]
+        for values in lista_2:
+            for datos in values:
+                if data in datos:
+                    numeros.append(int(datos[4:]))
+        lista_4.append(max(numeros))
+        lista_5.append(min(numeros))
+
+
     """
     La columna 5 codifica un diccionario donde cada cadena de tres letras corresponde a
     una clave y el valor despues del caracter `:` corresponde al valor asociado a la
@@ -227,9 +255,14 @@ def pregunta_06():
     ]
 
     """
-    return
+    print(lista_1)
+    print(lista_2)
+    print(lista_3)
+    print(lista_4)
+    print(lista_5)
+    return sorted(zip(lista_3, lista_5, lista_4))
 
-
+print(pregunta_06())
 def pregunta_07():
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
