@@ -270,8 +270,7 @@ def pregunta_07():
     lista_1 = []  # se almacenan parejas
     lista_2 = []  # claves (números en este caso)
     lista_3 = []  # valores (listas de letras)
-    lista_4 = []  # valores (listas de letras)
-    lista_5 = []  # minimos
+
     for row in csvreader:  # por cada columna en el documento
         lista_1.append(row[0][0:3].split("\t"))
     for values in lista_1:  # por cada dato en la lista
@@ -313,8 +312,28 @@ def pregunta_07():
     """
     return sorted(zip(lista_2, lista_3))
 
-print(pregunta_07())
+#print(pregunta_07())
 def pregunta_08():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan parejas
+    lista_2 = []  # claves (números en este caso)
+    lista_3 = []  # valores (listas de letras)
+    lista_4 = []  # valores (listas de letras)
+    lista_5 = []  # minimos
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0][0:3].split("\t"))
+    for values in lista_1:  # por cada dato en la lista
+        if int(values[1]) not in lista_2:
+            lista_2.append(int(values[1]))
+    lista_2 = sorted(lista_2)
+    for values in lista_2:
+        letras = []
+        for value in lista_1:
+            if values == int(value[1]) and value[0] not in letras:
+                letras.append(value[0])
+        lista_3.append(sorted(letras))
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
     de la segunda columna; la segunda parte de la tupla es una lista con las letras
@@ -336,9 +355,12 @@ def pregunta_08():
     ]
 
     """
-    return
+    print(lista_1)
+    print(lista_2)
+    print(lista_3)
+    return sorted(zip(lista_2, lista_3))
 
-
+print(pregunta_08())
 def pregunta_09():
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
