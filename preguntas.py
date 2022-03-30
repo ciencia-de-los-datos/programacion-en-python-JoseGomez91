@@ -404,8 +404,8 @@ def pregunta_09():
     }
 
     """
-    return sorted(diccionario_1.items())
-#print(pregunta_09())
+    return dict(sorted(diccionario_1.items()))
+print(pregunta_09())
 
 
 def pregunta_10():
