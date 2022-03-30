@@ -255,15 +255,42 @@ def pregunta_06():
     ]
 
     """
-    print(lista_1)
-    print(lista_2)
-    print(lista_3)
-    print(lista_4)
-    print(lista_5)
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
+    # print(lista_4)
+    # print(lista_5)
     return sorted(zip(lista_3, lista_5, lista_4))
 
-print(pregunta_06())
+#print(pregunta_06())
 def pregunta_07():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan parejas
+    lista_2 = []  # claves (números en este caso)
+    lista_3 = []  # valores (listas de letras)
+    lista_4 = []  # valores (listas de letras)
+    lista_5 = []  # minimos
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[0][0:3].split("\t"))
+    for values in lista_1:  # por cada dato en la lista
+        if int(values[1]) not in lista_2:
+            lista_2.append(int(values[1]))
+    lista_2=sorted(lista_2)
+    for values in lista_2:
+        letras = []
+        for value in lista_1:
+            if values == int(value[1]):
+                letras.append(value[0])
+        lista_3.append(letras)
+                
+
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
+    # print(lista_4)
+    # print(lista_5)
     """
     Retorne una lista de tuplas que asocien las columnas 0 y 1. Cada tupla contiene un
     valor posible de la columna 2 y una lista con todas las letras asociadas (columna 1)
@@ -284,9 +311,9 @@ def pregunta_07():
     ]
 
     """
-    return
+    return sorted(zip(lista_2, lista_3))
 
-
+print(pregunta_07())
 def pregunta_08():
     """
     Genere una lista de tuplas, donde el primer elemento de cada tupla contiene  el valor
