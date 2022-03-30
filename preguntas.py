@@ -355,13 +355,36 @@ def pregunta_08():
     ]
 
     """
-    print(lista_1)
-    print(lista_2)
-    print(lista_3)
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
     return sorted(zip(lista_2, lista_3))
 
-print(pregunta_08())
+#print(pregunta_08())
 def pregunta_09():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_2 = []  # elementos con split
+    lista_3 = []  # claves letras
+    diccionario_1 = {}
+    for row in csvreader:  # por cada columna en el documento
+        lista_1.append(row[1:])
+    for values in lista_1:  # por cada dato en la lista 1
+        for data in values:
+            lista_2.append(data.split("\t"))
+    for values in lista_2:
+        for data in values:
+            if len(data) > 1:
+                    lista_3.append(data[:3])
+
+    for listas in lista_3:
+        diccionario_1.setdefault(listas, 0)
+        diccionario_1[listas] = diccionario_1[listas] + 1
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
     """
     Retorne un diccionario que contenga la cantidad de registros en que aparece cada
     clave de la columna 5.
@@ -381,7 +404,8 @@ def pregunta_09():
     }
 
     """
-    return
+    return sorted(diccionario_1.items())
+#print(pregunta_09())
 
 
 def pregunta_10():
