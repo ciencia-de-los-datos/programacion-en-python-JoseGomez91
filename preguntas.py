@@ -505,10 +505,10 @@ def pregunta_11():
             diccionario_1.setdefault(lista_1[coord], lista_2[coord])
         else:
             diccionario_1[lista_1[coord]] = diccionario_1[lista_1[coord]] + lista_2[coord]
-    print(lista_1)
-    print(lista_2)
-    print(lista_3)
-    print(lista_4)
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
+    # print(lista_4)
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
@@ -527,9 +527,44 @@ def pregunta_11():
 
     """
     return dict(sorted(diccionario_1.items()))
-print(pregunta_11())
+#print(pregunta_11())
 
 def pregunta_12():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos
+    lista_2 = []
+    lista_3 = []
+    lista_4 = []
+    diccionario_1 = {}
+    for row in csvreader:  # por cada columna en el documento
+        sublista = []
+        sublista_2 = []
+        sublista_3 = []
+        sublista.append(row[0][0])
+        for data in row[1:]:
+            sublista_2.append(data.split("\t"))
+        for data in sublista_2:
+            for values in data:
+                if len(values) > 1:
+                    sublista_3.append(int(values[4:]))
+        # print(sublista)
+        # print(sublista_2)
+        # print(sublista_3)
+        for datos in sublista:
+            lista_1.append(datos)
+            lista_2.append(sum(sublista_3))
+
+    for coord in range(len(lista_1)):
+        if lista_1[coord] not in diccionario_1:
+            diccionario_1.setdefault(lista_1[coord], lista_2[coord])
+        else:
+            diccionario_1[lista_1[coord]] = diccionario_1[lista_1[coord]] + lista_2[coord]
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
+    # print(lista_4)
     """
     Genere un diccionario que contengan como clave la columna 1 y como valor la suma de
     los valores de la columna 5 sobre todo el archivo.
@@ -544,4 +579,5 @@ def pregunta_12():
     }
 
     """
-    return
+    return dict(sorted(diccionario_1.items()))
+#print(pregunta_12())
