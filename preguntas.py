@@ -365,9 +365,9 @@ def pregunta_09():
     import csv
     datos = open('data.csv')
     csvreader = csv.reader(datos)
-    lista_1 = []  # se almacenan los datos de la columna #1 del csv
+    lista_1 = []  # claves letras
     lista_2 = []  # elementos con split
-    lista_3 = []  # claves letras
+    lista_3 = []  #valor
     diccionario_1 = {}
     for row in csvreader:  # por cada columna en el documento
         lista_1.append(row[1:])
@@ -432,10 +432,10 @@ def pregunta_10():
                     sublista_3.append(values)
         lista_2.append(len(sublista))
         lista_3.append(len(sublista_3))
-        print(sublista, len(sublista))
-        print(sublista_2)
-        print(sublista_3)
-        print(row)
+        # print(sublista, len(sublista))
+        # print(sublista_2)
+        # print(sublista_3)
+        # print(row)
 
 
 
@@ -447,9 +447,9 @@ def pregunta_10():
     #                 numeros.append(int(datos[4:]))
     #     lista_4.append(max(numeros))
     #     lista_5.append(min(numeros))
-    print(lista_1)
-    print(lista_2)
-    print(lista_3)
+    # print(lista_1)
+    # print(lista_2)
+    # print(lista_3)
 
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
@@ -469,9 +469,46 @@ def pregunta_10():
 
     """
     return list(zip(lista_1, lista_2, lista_3))
-print(pregunta_10())
+#print(pregunta_10())
 
 def pregunta_11():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # se almacenan los datos
+    lista_2 = []
+    lista_3 = []
+    lista_4 = []
+    diccionario_1 = {}
+    for row in csvreader:  # por cada columna en el documento
+        sublista = []
+        sublista_2 = []
+        sublista_3 = []
+        sublista.append(row[0][-1])
+        sublista_3.append(int(row[0][2]))
+        for data in row[1:]:
+            sublista_2.append(data.split("\t"))
+        for data in sublista_2:
+            for values in data:
+                if len(values)==1:
+                    sublista.append(values)
+        print(sublista)
+        print(sublista_2)
+        print(sublista_3)
+        for datos in sublista:
+            lista_1.append(datos)
+            lista_2.append(sublista_3[0])
+
+
+    for coord in range(len(lista_1)):
+        if lista_1[coord] not in diccionario_1:
+            diccionario_1.setdefault(lista_1[coord], lista_2[coord])
+        else:
+            diccionario_1[lista_1[coord]] = diccionario_1[lista_1[coord]] + lista_2[coord]
+    print(lista_1)
+    print(lista_2)
+    print(lista_3)
+    print(lista_4)
     """
     Retorne un diccionario que contengan la suma de la columna 2 para cada letra de la
     columna 4, ordenadas alfabeticamente.
@@ -489,8 +526,8 @@ def pregunta_11():
 
 
     """
-    return
-
+    return dict(sorted(diccionario_1.items()))
+print(pregunta_11())
 
 def pregunta_12():
     """
