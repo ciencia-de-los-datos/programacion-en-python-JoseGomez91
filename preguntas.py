@@ -405,10 +405,52 @@ def pregunta_09():
 
     """
     return dict(sorted(diccionario_1.items()))
-print(pregunta_09())
+#print(pregunta_09())
 
 
 def pregunta_10():
+    import csv
+    datos = open('data.csv')
+    csvreader = csv.reader(datos)
+    lista_1 = []  # primera letra
+    lista_2 = []  # cantidad claves individuales
+    lista_3 = []  # cantidad claves triadas
+
+    for row in csvreader:  # por cada columna en el documento
+        sublista=[]
+        sublista_2=[]
+        sublista_3=[]
+        lista_1.append(row[0][0])
+        sublista.append(row[0][-1])
+        for data in row[1:]:
+            sublista_2.append(data.split("\t"))
+        for data in sublista_2:
+            for values in data:
+                if len(values)==1:
+                    sublista.append(values)
+                else:
+                    sublista_3.append(values)
+        lista_2.append(len(sublista))
+        lista_3.append(len(sublista_3))
+        print(sublista, len(sublista))
+        print(sublista_2)
+        print(sublista_3)
+        print(row)
+
+
+
+    # for data in lista_3:
+    #     numeros = []
+    #     for values in lista_2:
+    #         for datos in values:
+    #             if data in datos:
+    #                 numeros.append(int(datos[4:]))
+    #     lista_4.append(max(numeros))
+    #     lista_5.append(min(numeros))
+    print(lista_1)
+    print(lista_2)
+    print(lista_3)
+
     """
     Retorne una lista de tuplas contengan por cada tupla, la letra de la columna 1 y la
     cantidad de elementos de las columnas 4 y 5.
@@ -426,8 +468,8 @@ def pregunta_10():
 
 
     """
-    return
-
+    return list(zip(lista_1, lista_2, lista_3))
+print(pregunta_10())
 
 def pregunta_11():
     """
